@@ -1,6 +1,5 @@
 BusMe::Application.routes.draw do
 
-  get "site/index"
   # You can have the root of your site routed with "root"
   
   scope :api do
@@ -13,7 +12,7 @@ BusMe::Application.routes.draw do
     end
   end
 
-  root 'buses#index', defaults: { format: :json }
+  root 'site#index'
 
 
   # Example of regular route:
