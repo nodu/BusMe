@@ -1,13 +1,9 @@
-collection @buses
+object false
 
-attributes :name, :type_of_bus
-
+child @buses, object_root: false do
+  attributes :name, :type_of_bus, :id
+ 
 node :href do |bus|
-  bus_url(bus)
-end
-
-node:links do |bus|
-  {
-  routes: bus_routes_url(bus)
-  }  
+   bus_url(bus)
+ end
 end

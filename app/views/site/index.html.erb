@@ -1,2 +1,18 @@
-<h1>Site#index</h1>
-<p>Find me in app/views/site/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BusMe</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<%= render 'buses' %>
+<%= render 'route' %>
+
+<section id="content"></section>
+
+</body>
+</html>
