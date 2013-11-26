@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121030610) do
+ActiveRecord::Schema.define(version: 20131125020509) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -21,14 +24,24 @@ ActiveRecord::Schema.define(version: 20131121030610) do
   end
 
   create_table "routes", force: true do |t|
-    t.string   "start_at"
-    t.string   "stop_at"
-    t.integer  "bus_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "route_id"
+    t.string   "company_code"
+    t.string   "district"
+    t.string   "route_namec"
+    t.string   "route_names"
+    t.string   "route_namee"
+    t.integer  "route_type"
+    t.string   "service_mode"
+    t.integer  "special_type"
+    t.string   "loc_start_namec"
+    t.string   "loc_start_names"
+    t.string   "loc_start_namee"
+    t.string   "loc_end_namec"
+    t.string   "loc_end_names"
+    t.string   "loc_end_namee"
+    t.float    "full_fare"
+    t.datetime "last_update_date"
   end
-
-  add_index "routes", ["bus_id"], name: "index_routes_on_bus_id"
 
   create_table "stops", force: true do |t|
     t.string   "stop_name"
@@ -37,6 +50,6 @@ ActiveRecord::Schema.define(version: 20131121030610) do
     t.datetime "updated_at"
   end
 
-  add_index "stops", ["route_id"], name: "index_stops_on_route_id"
+  add_index "stops", ["route_id"], name: "index_stops_on_route_id", using: :btree
 
 end

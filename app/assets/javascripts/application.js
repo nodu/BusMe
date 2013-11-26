@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require handlebars
 //= require index
+//= require templates

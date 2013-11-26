@@ -36,45 +36,45 @@ buses = Bus.create([
   }
 ])
 
-routes = Route.create([
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[0]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[1]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[2]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[3]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[4]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[5]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[6]
-  },
-  {
-    start_at: "start",
-    stop_at: "stop",
-    bus: buses[7]
-  }
-  ])
+# routes = Route.create([
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[0]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[1]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[2]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[3]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[4]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[5]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[6]
+#   },
+#   {
+#     start_at: "start",
+#     stop_at: "stop",
+#     bus: buses[7]
+#   }
+#   ])
