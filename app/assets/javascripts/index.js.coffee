@@ -9,6 +9,7 @@ $ ->
   $('section').on 'click', 'ul li', (e) ->
     id = $(@).data('id')
     showPage "/api/buses/#{id}", busMe.busTemplate
+    
       
   $('section').on 'click', '#back-to-buses', (e) ->
     showPage '/api/buses', busMe.busesTemplate

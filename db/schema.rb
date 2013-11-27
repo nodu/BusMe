@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20131125020509) do
   create_table "buses", force: true do |t|
     t.string   "name"
     t.integer  "type_of_bus"
+    t.float    "lat"
+    t.float    "long"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

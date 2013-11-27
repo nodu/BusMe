@@ -15,3 +15,5 @@
 //= require handlebars
 //= require index
 //= require templates
+//= require leafletS
+//= require map
