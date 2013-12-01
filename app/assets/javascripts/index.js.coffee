@@ -1,20 +1,68 @@
 $ ->
-  showPage = (url, templateFunc)->
+  pageBody = $('#content')
+  # templates - Handlebars.templates
+
+
+  showPage = (url, templateFunc) =>
     $.ajax url,
-      type: 'GET',
       dataType: 'json',
-      success: (data) ->
-        $("#content").html(templateFunc(data))
+      success: (data) =>
+        pageBody.html(templateFunc(data))
 
-  $('section').on 'click', 'ul li', (e) ->
+  # pageBody.on 'click', 'ul li', (e) ->
+  #   id = $(@).data('id')
+  #   showPage "/api/buses/#{id}", bus.busTemplate
+
+  pageBody.on 'click', 'ul li span', (e) ->
+    id = $(@).parent().data('id')
+    showPage "/api/buses/#{id}", bus.busTemplate
+
+
+  pageBody.on 'click', 'button.show-add-form', (e) ->
+    pageBody.html bus.busAddForm
+
+  pageBody.on 'submit', 'form#bus-add-form', (e) ->
+    e.preventDefault()
+    $.ajax "/api/buses",
+      type: 'POST'
+      data: $(@).serialize()
+      dataType: 'text'
+      success: (x) ->
+        # Back to the Users page
+        showPage '/api/buses', bus.busesTemplate
+ 
+
+  pageBody.on 'click', '#back-to-buses', (e) ->
+    showPage '/api/buses', bus.busesTemplate
+
+  showPage '/api/buses', bus.busesTemplate
+
+  name = "Replace me with a jquery var to get the content of the form"
+
+
+  pageBody.on 'click', 'ul li button.edit', (e) ->
+    id = $(@).parent().data('id')
+    showPage "/api/buses/#{id}", bus.editBusTemplate
+
+  pageBody.on 'submit', 'form#bus-edit-form', (e) ->
+    console.log "derp"
+    e.preventDefault()
     id = $(@).data('id')
-    showPage "/api/buses/#{id}", busMe.busTemplate
-    
-      
-  $('section').on 'click', '#back-to-buses', (e) ->
-    showPage '/api/buses', busMe.busesTemplate
+    $.ajax "/api/buses/#{id}",
+      type: 'PUT'
+      data: $(@).serialize()
+      dataType: 'text'
+      success: (x) ->
+        showPage '/api/buses', bus.busesTemplate
 
-  showPage '/api/buses', busMe.busesTemplate
+  pageBody.on 'click', 'ul li button.delete', (e) ->
+    id = $(@).parent().data('id')
+    $.ajax "/api/buses/#{id}",
+      type: 'DELETE'
+      dataType: 'text'
+      success: ->
+        # Redisplay the updated Users list
+        showPage '/api/buses', bus.busesTemplate
 
 
   #  $('section').on 'click', 'ul li', (e) ->
