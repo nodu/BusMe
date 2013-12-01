@@ -1,42 +1,56 @@
-@busMe =
-   busesTemplate: Handlebars.compile "
+@bus =
+  busesTemplate: Handlebars.compile "
+   <button class='show-add-form'> Add New </button>
      {{#each buses}}
-     <ul>
-         <li data-id=\"{{id}}\">{{name}}</li>
-     </ul>
+       <ul>
+          <li data-id=\"{{id}}\">
+          <span>{{name}}</span>
+          <button class=\"edit\">edit</button>
+          <button class='delete'>Delete</button>
+          </li>
+       </ul>
+       <script>
 
-    <script>
-    layer = [];
-    
-    var point = L.marker([{{lat}}, {{long}}]).addTo(map).bindPopup(\"{{name}}\");
+        if (BusMe.newMarker) {
+          console.log('marker', {{id}});
 
-    layer.push(point);
-    cities = L.layerGroup(layer);
-
-    </script>
+          BusMe.map.removeLayer(BusMe.newMarker);
+        }
+       </script>
      {{/each}}
    "
  
-   busTemplate: Handlebars.compile "
+  busTemplate: Handlebars.compile "
     {{#each buses}}
       <p class=\"name\">{{name}}</p>
+      <span>Type: </span>
+      <span class=\"type\">{{type_of_bus}}</span>
       <p><a id=\"back-to-buses\" href=\"#\">Back to Buses</a></p>
-    
-    <script>
-    
-
-    </script>
+      <script>
+        var point = L.marker([{{lat}}, {{long}}]).addTo(BusMe.map).bindPopup('<a href=\"#\" id=\"marker{{id}}\">{{name}}<a>');
+      </script>
     {{/each}}
    "
+        # BusMe.newMarker = L.marker([{{lat}}, {{long}}]).bindPopup(\"{{name}}\");
+        # BusMe.map.addLayer(BusMe.newMarker);
+   
 
-      # L.marker([{{lat}}, {{long}}]).addTo(map).bindPopup(\"{{name}}\");
+  busAddForm: Handlebars.compile "
+     <form id=\"bus-add-form\">
+      <input type=\"text\" name=\"bus[name]\" value=\"\">
+      <input type=\"submit\" value=\"Create Bus\">
+    </form>
+    <script>
+    
+    </script>
+    "
 
-# <script>
-#       var pointsArr = [];
-#       map.removeLayer(points);
-#       var marker{{id}} = L.marker([{{lat}}, {{long}}]);
-#       pointsArr.push(marker{{id}});
-#       var points = L.layerGroup(pointsArr);
-#       map.addLayer(points);
-
-#     </script>
+  editBusTemplate: Handlebars.compile "
+    {{#each buses}}
+      <form id=\"bus-edit-form\" data-id=\"{{id}}\">
+        <input type=\"text\" name=\"bus[name]\" value=\"{{name}}\">
+        <input type=\"text\" name=\"bus[type_of_bus]\" value=\"{{type_of_bus}}\">
+        <input type=\"submit\" value=\"Save Changes\">
+      </form>
+    {{/each}}
+    "

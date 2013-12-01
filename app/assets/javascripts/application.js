@@ -17,3 +17,8 @@
 //= require templates
 //= require leafletS
 //= require map
+
+
+// Namespacing global varibles in the BusMe object.
+// Useful to avoid collision on my map and marker names
+var BusMe = BusMe || {};
